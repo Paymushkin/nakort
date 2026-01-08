@@ -326,8 +326,18 @@ function initHeroCarousel() {
 
 // Функция для инициализации reviews карусели с Swiper
 function initReviewsCarousel() {
-  if (typeof Swiper !== 'undefined') {
-    const reviewsSwiper = new Swiper('.reviews__carousel', {
+  if (typeof Swiper === 'undefined') {
+    console.warn('Swiper не загружен');
+    return;
+  }
+  
+  const reviewsCarousel = document.querySelector('.reviews__carousel');
+  if (!reviewsCarousel) {
+    console.warn('Элемент .reviews__carousel не найден');
+    return;
+  }
+  
+  const reviewsSwiper = new Swiper('.reviews__carousel', {
       slidesPerView: 1,
       spaceBetween: 20,
       loop: true,
@@ -347,17 +357,25 @@ function initReviewsCarousel() {
         }
       }
     });
-  }
 }
 
 // Функция для инициализации certificates карусели с Swiper
 function initCertificatesCarousel() {
-  if (typeof Swiper !== 'undefined') {
-    // Инициализация для каждой панели (tennis и padel)
-    const certificatesPanels = document.querySelectorAll('.certificates__panel');
-    const certificatesContent = document.querySelector('.certificates__content');
-    
-    certificatesPanels.forEach((panel) => {
+  if (typeof Swiper === 'undefined') {
+    console.warn('Swiper не загружен');
+    return;
+  }
+  
+  // Инициализация для каждой панели (tennis и padel)
+  const certificatesPanels = document.querySelectorAll('.certificates__panel');
+  if (certificatesPanels.length === 0) {
+    console.warn('Элементы .certificates__panel не найдены');
+    return;
+  }
+  
+  const certificatesContent = document.querySelector('.certificates__content');
+  
+  certificatesPanels.forEach((panel) => {
       const carousel = panel.querySelector('.certificates__carousel');
       if (carousel) {
         // Определяем тип панели (tennis или padel)
@@ -399,7 +417,6 @@ function initCertificatesCarousel() {
         });
       }
     });
-  }
 }
 
 // Экспорт для использования в других файлах
@@ -721,22 +738,37 @@ function initScrollToCenterAnimation(element, visibleClass, options = {}) {
   checkPosition(); // Проверяем начальную позицию
 }
 
+// Функция для ожидания загрузки Swiper
+function waitForSwiper(callback, maxAttempts = 50, attempt = 0) {
+  if (typeof Swiper !== 'undefined') {
+    callback();
+  } else if (attempt < maxAttempts) {
+    setTimeout(() => waitForSwiper(callback, maxAttempts, attempt + 1), 100);
+  } else {
+    console.warn('Swiper не загрузился после ожидания');
+  }
+}
+
 // Инициализация каруселей после загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
-  // Инициализация hero карусели
+  // Инициализация hero карусели (не требует Swiper)
   if (typeof initHeroCarousel === 'function') {
     initHeroCarousel();
   }
 
-  // Инициализация reviews карусели
-  if (typeof initReviewsCarousel === 'function') {
-    initReviewsCarousel();
-  }
+  // Инициализация reviews карусели (требует Swiper)
+  waitForSwiper(function() {
+    if (typeof initReviewsCarousel === 'function') {
+      initReviewsCarousel();
+    }
+  });
 
-  // Инициализация certificates карусели
-  if (typeof initCertificatesCarousel === 'function') {
-    initCertificatesCarousel();
-  }
+  // Инициализация certificates карусели (требует Swiper)
+  waitForSwiper(function() {
+    if (typeof initCertificatesCarousel === 'function') {
+      initCertificatesCarousel();
+    }
+  });
 
   // Универсальная функция для инициализации табов
   function initTabs(options = {}) {

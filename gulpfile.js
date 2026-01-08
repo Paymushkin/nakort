@@ -23,6 +23,7 @@ const paths = {
     pug: 'src/pug/**/*.pug',
     scss: 'src/scss/**/*.scss',
     js: 'src/js/**/*.js',
+    css: 'src/css/**/*.css',
     img: 'src/img/**/*.{jpg,jpeg,png,gif,svg,webp}',
     fonts: 'src/fonts/**/*.{ttf,otf,woff,woff2}',
     static: 'src/static/**/*'
@@ -101,6 +102,14 @@ function processJS() {
     .pipe(browserSync.stream());
 }
 
+// Копирование Swiper JS (отдельно, не объединяем с main.js)
+function copySwiperJS() {
+  return gulp.src('src/js/swiper.min.js')
+    .pipe(plumber())
+    .pipe(gulp.dest(paths.dist.js))
+    .pipe(browserSync.stream());
+}
+
 // Обработка JavaScript (для production - с минификацией)
 function processJSProd() {
   return gulp.src([
@@ -116,6 +125,13 @@ function processJSProd() {
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(paths.dist.js));
+}
+
+// Копирование Swiper JS для production
+function copySwiperJSProd() {
+  return gulp.src('src/js/swiper.min.js')
+    .pipe(plumber())
     .pipe(gulp.dest(paths.dist.js));
 }
 
@@ -238,6 +254,14 @@ function replaceFontsInCSS() {
     .pipe(gulp.dest(paths.dist.css));
 }
 
+// Копирование CSS файлов (swiper.min.css и другие)
+function copyCSS() {
+  return gulp.src(paths.src.css)
+    .pipe(plumber())
+    .pipe(gulp.dest(paths.dist.css))
+    .pipe(browserSync.stream());
+}
+
 // Копирование статических файлов (favicon, manifest и т.д.)
 function copyStatic() {
   return gulp.src(paths.src.static)
@@ -282,13 +306,20 @@ function watch() {
   gulp.watch(paths.src.scss, compileSass);
   
   // Отслеживание JS файлов - обработка и перезагрузка (через stream, без минификации)
-  gulp.watch(paths.src.js, processJS);
+  // Исключаем swiper.min.js, он копируется отдельно
+  gulp.watch(['src/js/**/*.js', '!src/js/swiper.min.js'], processJS);
   
   // Отслеживание изображений - быстрое копирование без оптимизации (через stream)
   gulp.watch(paths.src.img, copyImages);
   
+  // Отслеживание CSS файлов - копирование и перезагрузка (через stream)
+  gulp.watch(paths.src.css, copyCSS);
+  
   // Отслеживание статических файлов - копирование и перезагрузка (через stream)
   gulp.watch(paths.src.static, copyStatic);
+  
+  // Отслеживание Swiper JS - копирование и перезагрузка (через stream)
+  gulp.watch('src/js/swiper.min.js', copySwiperJS);
   
   // Отслеживание HTML файлов в dist (на случай прямого редактирования)
   gulp.watch(`${paths.dist.html}/**/*.html`).on('change', browserSync.reload);
@@ -303,7 +334,7 @@ const convert = gulp.series(
 // Задача сборки с конвертацией
 const buildWithConvert = gulp.series(
   clean,
-  gulp.parallel(compilePug, compileSass, processJSProd, optimizeImages, copyFonts, copyStatic),
+  gulp.parallel(compilePug, compileSass, processJSProd, copySwiperJSProd, copyCSS, optimizeImages, copyFonts, copyStatic),
   convert,
   copyWebpImages,
   copyConvertedFonts,
@@ -318,7 +349,7 @@ const buildWithConvert = gulp.series(
 // Задача сборки без конвертации
 const build = gulp.series(
   clean,
-  gulp.parallel(compilePug, compileSass, processJSProd, optimizeImages, copyFonts, copyStatic),
+  gulp.parallel(compilePug, compileSass, processJSProd, copySwiperJSProd, copyCSS, optimizeImages, copyFonts, copyStatic),
   minifyCSS,
   minifyHTML
 );
@@ -326,7 +357,7 @@ const build = gulp.series(
 // Задача разработки
 const dev = gulp.series(
   clean,
-  gulp.parallel(compilePug, compileSass, processJS, copyImages, copyFonts, copyStatic),
+  gulp.parallel(compilePug, compileSass, processJS, copySwiperJS, copyCSS, copyImages, copyFonts, copyStatic),
   gulp.parallel(serve, watch)
 );
 

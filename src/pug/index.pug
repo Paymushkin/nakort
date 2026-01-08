@@ -44,10 +44,8 @@ html(lang="ru")
     // Critical CSS (inline или preload)
     link(rel="stylesheet" href="css/main.css")
     
-    // Non-critical CSS (загружаем асинхронно)
-    link(rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
-    noscript
-      link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
+    // Swiper CSS (локальный файл)
+    link(rel="stylesheet" href="css/swiper.min.css")
   body
     .wrapper
         include includes/header
@@ -90,12 +88,6 @@ html(lang="ru")
         }
       }
     
-    // Загрузка Swiper асинхронно (не блокирует рендеринг)
-    script.
-      (function() {
-        var script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
-        script.defer = true;
-        document.head.appendChild(script);
-      })();
+    // Swiper JS (локальный файл, загружается перед main.js)
+    script(src="js/swiper.min.js" defer)
     script(src="js/main.js" defer)

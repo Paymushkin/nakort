@@ -126,22 +126,37 @@ function initScrollToCenterAnimation(element, visibleClass, options = {}) {
   checkPosition(); // Проверяем начальную позицию
 }
 
+// Функция для ожидания загрузки Swiper
+function waitForSwiper(callback, maxAttempts = 50, attempt = 0) {
+  if (typeof Swiper !== 'undefined') {
+    callback();
+  } else if (attempt < maxAttempts) {
+    setTimeout(() => waitForSwiper(callback, maxAttempts, attempt + 1), 100);
+  } else {
+    console.warn('Swiper не загрузился после ожидания');
+  }
+}
+
 // Инициализация каруселей после загрузки DOM
 document.addEventListener('DOMContentLoaded', function() {
-  // Инициализация hero карусели
+  // Инициализация hero карусели (не требует Swiper)
   if (typeof initHeroCarousel === 'function') {
     initHeroCarousel();
   }
 
-  // Инициализация reviews карусели
-  if (typeof initReviewsCarousel === 'function') {
-    initReviewsCarousel();
-  }
+  // Инициализация reviews карусели (требует Swiper)
+  waitForSwiper(function() {
+    if (typeof initReviewsCarousel === 'function') {
+      initReviewsCarousel();
+    }
+  });
 
-  // Инициализация certificates карусели
-  if (typeof initCertificatesCarousel === 'function') {
-    initCertificatesCarousel();
-  }
+  // Инициализация certificates карусели (требует Swiper)
+  waitForSwiper(function() {
+    if (typeof initCertificatesCarousel === 'function') {
+      initCertificatesCarousel();
+    }
+  });
 
   // Универсальная функция для инициализации табов
   function initTabs(options = {}) {
