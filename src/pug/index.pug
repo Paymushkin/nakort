@@ -1,0 +1,38 @@
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="description" content="Теннисный клуб - профессиональные корты, тренировки и турниры")
+    meta(name="keywords" content="теннис, корты, тренировки, турниры, спорт")
+    meta(name="author" content="Теннисный клуб")
+    meta(property="og:title" content="Теннисный клуб")
+    meta(property="og:description" content="Профессиональные корты, тренировки и турниры")
+    meta(property="og:type" content="website")
+    title Теннисный клуб - Главная
+    link(rel="stylesheet" href="css/main.css")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
+  body
+    .wrapper
+        include includes/header
+
+        main.main
+          include includes/hero
+          include includes/activities
+          include includes/about
+          include includes/highlight
+          include includes/features
+          include includes/application
+          include includes/reviews
+          include includes/pricing
+          include includes/certificates
+          include includes/promo
+          include includes/faq
+          
+        include includes/footer
+
+    include includes/modal-training
+    include includes/modal-certificate
+
+    script(src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer)
+    script(src="js/main.js" defer)

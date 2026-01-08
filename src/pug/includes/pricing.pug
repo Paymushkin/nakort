@@ -1,0 +1,148 @@
+section.pricing#pricing
+  .container
+    h2.pricing__title Цены
+    .pricing__tabs
+      button.pricing__tab.pricing__tab--active(data-tab="tennis") Теннис
+      button.pricing__tab(data-tab="padel") Падел
+    
+    .pricing__content
+      .pricing__panel.pricing__panel--active(data-panel="tennis")
+        .pricing__grid
+          -
+            const tennisPrices = [
+              {
+                title: 'Групповые',
+                subtitle: '2 человека',
+                badge: {
+                  price: 'от 2 900 ₽/час',
+                  label: 'Пробное занятие'
+                },
+                items: [
+                  { price: 'от 3 650 ₽/час', label: 'Разовое занятие' },
+                  { price: 'от 13 800 ₽/', label: 'от 4х занятий в месяц' }
+                ],
+                note: 'корт входит в стоимость, предоплата 100%',
+                promo: 'от 2 900 ₽/ час',
+                shape: '1'
+              },
+              {
+                title: 'Персональные',
+                subtitle: '2 человека',
+                items: [
+                  { price: '4 000 ₽/час', label: 'Разовое занятие' },
+                  { price: '36 500 ₽', label: '10 занятий', discount: '-10%' }
+                ],
+                note: 'корт оплачивается отдельно, предоплата 100%',
+                shape: '2',
+                addShape: '2-1'
+              },
+              {
+                title: 'Сплит',
+                subtitle: '2 человека',
+                items: [
+                  { price: '5 000 ₽/час', label: 'Разовое занятие' },
+                  { price: '45 000 ₽', label: '10 занятий', discount: '-10%' }
+                ],
+                note: 'корт оплачивается отдельно, предоплата 100%',
+                shape: '3',
+                addShape: '3-1'
+              }
+            ];
+          each priceCard in tennisPrices
+            .pricing__card.card-pricing(data-scroll-position="bottom")
+              .card-pricing__back 
+                h3.card-pricing__title= priceCard.title
+                span.card-pricing__subtitle= priceCard.subtitle
+              .card-pricing__front
+                if priceCard.promo
+                  .card-pricing__promo 
+                    span.card-pricing__promo-value= priceCard.promo
+                    span.card-pricing__promo-label Пробное занятие
+                .card-pricing__shape-container
+                  img.card-pricing__shape(class=`card-pricing__shape--${priceCard.shape}`, src=`../img/plan/ellipse-${priceCard.shape}.svg`, alt='')
+                  if priceCard.addShape
+                    img.card-pricing__shape(class=`card-pricing__shape--${priceCard.addShape}`, src=`../img/plan/ellipse-${priceCard.addShape}.svg`, alt='')
+                .card-pricing__content
+                  .card-pricing__single.single-price
+                    .single-price__value= priceCard.items[0].price
+                    .single-price__description= priceCard.items[0].label
+
+                  .card-pricing__multiple.multiple-price
+                    .multiple-price__value= priceCard.items[1].price
+                    .multiple-price__description= priceCard.items[1].label
+                    if priceCard.items[1].discount
+                      .multiple-price__discount= priceCard.items[1].discount
+
+                  include button
+                  +button('Оставить заявку', '#', 'pricing__button btn--primary')(data-modal="training")
+                  p.pricing__note= priceCard.note
+
+      .pricing__panel(data-panel="padel")
+        .pricing__grid
+          -
+            const padelPrices = [
+              {
+                title: 'Групповые',
+                subtitle: '2 человека',
+                badge: {
+                  price: 'от 2 900 ₽/час',
+                  label: 'Пробное занятие'
+                },
+                items: [
+                  { price: 'от 3 650 ₽/час', label: 'Разовое занятие' },
+                  { price: 'от 13 800 ₽/', label: 'от 4х занятий в месяц' }
+                ],
+                note: 'корт входит в стоимость, предоплата 100%',
+                promo: 'от 2 900 ₽/ час',
+                shape: '4'
+              },
+              {
+                title: 'Персональные',
+                subtitle: '2 человека',
+                items: [
+                  { price: '4 000 ₽/час', label: 'Разовое занятие' },
+                  { price: '36 500 ₽', label: '10 занятий', discount: '-10%' }
+                ],
+                note: 'корт оплачивается отдельно, предоплата 100%',
+                shape: '5',
+                addShape: '5-1'
+              },
+              {
+                title: 'Сплит',
+                subtitle: '2 человека',
+                items: [
+                  { price: '5 000 ₽/час', label: 'Разовое занятие' },
+                  { price: '45 000 ₽', label: '10 занятий', discount: '-10%' }
+                ],
+                note: 'корт оплачивается отдельно, предоплата 100%',
+                shape: '6',
+              }
+            ];
+          each priceCard in padelPrices
+            .pricing__card.card-pricing(data-scroll-position="bottom")
+              .card-pricing__back.card-pricing__back--padel 
+                h3.card-pricing__title= priceCard.title
+                span.card-pricing__subtitle= priceCard.subtitle
+              .card-pricing__front
+                if priceCard.promo
+                  .card-pricing__promo.card-pricing__promo--padel
+                    span.card-pricing__promo-value= priceCard.promo
+                    span.card-pricing__promo-label Пробное занятие
+                .card-pricing__shape-container
+                  if priceCard.addShape
+                    img.card-pricing__shape(class=`card-pricing__shape--${priceCard.addShape}`, src=`../img/plan/ellipse-${priceCard.addShape}.svg`, alt='')
+                  img.card-pricing__shape(class=`card-pricing__shape--${priceCard.shape}`, src=`../img/plan/ellipse-${priceCard.shape}.svg`, alt='')
+                .card-pricing__content
+                  .card-pricing__single.single-price
+                    .single-price__value= priceCard.items[0].price
+                    .single-price__description= priceCard.items[0].label
+
+                  .card-pricing__multiple.multiple-price
+                    .multiple-price__value= priceCard.items[1].price
+                    .multiple-price__description= priceCard.items[1].label
+                    if priceCard.items[1].discount
+                      .multiple-price__discount.multiple-price__discount--padel= priceCard.items[1].discount
+
+                  include button
+                  +button('Оставить заявку', '#', 'pricing__button btn--secondary', 'button')(data-modal="training")
+                  p.pricing__note= priceCard.note

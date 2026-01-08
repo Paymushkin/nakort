@@ -1,0 +1,54 @@
+// Подключение шрифтов
+// Mulish - вариативный шрифт (основной)
+// PT Sans - классический шрифт (запасной)
+
+// Mulish (вариативный) - локальное подключение
+@font-face {
+  font-family: 'Mulish';
+  src: url('../fonts/Mulish/Mulish-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Mulish';
+  src: url('../fonts/Mulish/Mulish-Italic-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 200 1000;
+  font-style: italic;
+  font-display: swap;
+}
+
+// PT Sans (классический) - локальное подключение
+@font-face {
+  font-family: 'PT Sans';
+  src: url('../fonts/PT_Sans/PTSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  src: url('../fonts/PT_Sans/PTSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  src: url('../fonts/PT_Sans/PTSans-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PT Sans';
+  src: url('../fonts/PT_Sans/PTSans-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+

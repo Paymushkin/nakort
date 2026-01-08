@@ -1,0 +1,24 @@
+section.features
+  .container
+    h2.features__title Куда пойти? NAKORT!
+    .features__grid
+      -
+        const featuresItems = [
+          'Опытные тренеры с&nbsp;многолетней практикой подготовки спортсменов высокого уровня',
+          'Организация турниров и&nbsp;кэмпов любого масштаба по&nbsp;теннису и&nbsp;паделу',
+          'Множество локаций для занятий теннисом и&nbsp;паделом с&nbsp;любым уровнем инфраструктуры',
+          {
+            text: 'Открыты для посетителей с&nbsp;любым уровнем подготовки&nbsp;-',
+            text2: 'от&nbsp;новичков до&nbsp;опытных профессионалов'
+          }
+        ];
+      each item in featuresItems
+        .features__card
+          .features__shape
+          if typeof item === 'string'
+            p.features__text!= item
+          else
+            p.features__text
+              != item.text
+              br
+              != item.text2

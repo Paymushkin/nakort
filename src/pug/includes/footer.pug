@@ -1,0 +1,77 @@
+footer.footer#footer
+  .container
+    .footer__content
+
+      .footer__top.footer-top
+
+        nav.footer-top__nav
+          ul.footer-top__nav-list
+            li.footer-top__nav-item
+              a.footer-top__nav-link(href="#")
+                | О нас
+            li.footer-top__nav-item
+              a.footer-top__nav-link(href="#")
+                | Цены
+            li.footer-top__nav-item
+              a.footer-top__nav-link(href="#")
+                | Сертификаты
+            li.footer-top__nav-item
+              a.footer-top__nav-link(href="#")
+                | Корпоративный теннис
+            li.footer-top__nav-item
+              a.footer-top__nav-link(href="#")
+                | Правила оплаты
+
+        .footer-top__contacts
+          h3.footer-top__contacts-title Контакты
+
+          ul.footer-top__contacts-list
+            li.footer-top__contacts-item
+              a.footer-top__contacts-link(href="tel:+79891120027")
+                | + 7 (989) 112-00-27
+            li.footer-top__contacts-item
+              a.footer-top__contacts-link(href="mailto:corp@nakort.ru")
+                | corp@nakort.ru
+            li.footer-top__contacts-item
+              a.footer-top__contacts-link(href="mailto:tennis@nakort.ru")
+                | tennis@nakort.ru
+
+          .footer-top__contacts-social
+            ul.footer-top__contacts-social-list
+              li.footer-top__contacts-social-item
+                a.footer-top__contacts-social-link(href="#")
+                  include icons/icon-telegram
+              li.footer-top__contacts-social-item
+                a.footer-top__contacts-social-link(href="#")
+                  include icons/icon-whatsapp
+
+        .footer-top__disclaimer
+          span.footer-top__disclaimer-text
+            | * Personal – персональный
+          span.footer-top__disclaimer-text
+            | Split – разделение
+          span.footer-top__disclaimer-text
+            | Group – групповой
+
+        .footer-top__offer
+          include button
+          +button('Наше приложение', 'https://apps.apple.com/ru/app/nakort-tennis-club/id6742146880', 'btn--primary')
+
+      .footer__bottom.footer-bottom
+        nav.footer-bottom__nav
+          ul.footer-bottom__list
+            li.footer-bottom__item
+              a.footer-bottom__link(href="#")
+                | Правила клуба
+            li.footer-bottom__item
+              a.footer-bottom__link(href="#")
+                | Публичная оферта
+            li.footer-bottom__item
+              a.footer-bottom__link(href="#")
+                | Политика конфиденциальности
+            li.footer-bottom__item
+              a.footer-bottom__link(href="#")
+                | Реквизиты
+            li.footer-bottom__item
+              a.footer-bottom__link(href="#")
+                | Политика по обработке персональных данных

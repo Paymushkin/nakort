@@ -1,0 +1,104 @@
+@keyframes ballDrop {
+  0% {
+    transform: translateY(-110px) translateX(-80px) rotate(0deg);
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  // Первое падение с ускорением (гравитация) - быстрое падение к полу с движением к исходному положению
+  15% {
+    transform: translateY(0) translateX(-40px) rotate(180deg); // Приземление на пол - первое вращение 180 градусов
+  }
+  // Первое отпрыгивание (самое высокое) - отскок от пола
+  25% {
+    transform: translateY(-45px) translateX(-25px) rotate(270deg); // +90deg
+  }
+  28% {
+    transform: translateY(-45px) translateX(-23px) rotate(315deg); // +45deg
+  }
+  // Второе приземление на пол (затухание)
+  40% {
+    transform: translateY(0) translateX(-12px) rotate(330deg); // +15deg (замедление)
+  }
+  // Второе отпрыгивание (меньше первого) - ~45% от первого отскока
+  52% {
+    transform: translateY(-22px) translateX(-6px) rotate(345deg); // +15deg
+  }
+  54% {
+    transform: translateY(-22px) translateX(-5px) rotate(350deg); // +5deg (еще медленнее)
+  }
+  // Третье приземление на пол
+  64% {
+    transform: translateY(0) translateX(0) rotate(352deg); // +2deg
+  }
+  // Третье отпрыгивание (самое маленькое) - ~23% от первого отскока
+  70% {
+    transform: translateY(-10px) translateX(0) rotate(354deg); // +2deg
+  }
+  // Финальное приземление на пол
+  77% {
+    transform: translateY(0) translateX(0) rotate(356deg); // +2deg
+  }
+  // Небольшое финальное подпрыгивание
+  83% {
+    transform: translateY(-4px) translateX(0) rotate(358deg); // +2deg (очень медленно)
+  }
+  // Финальное приземление на пол
+  90% {
+    transform: translateY(0) translateX(0) rotate(359deg); // +1deg
+  }
+  // Финальная позиция на полу
+  100% {
+    transform: translateY(0) translateX(0) rotate(360deg); // +1deg (финальное вращение - полный оборот)
+    opacity: 1;
+  }
+}
+
+@keyframes about-grid-item-shadow {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(180deg);
+    opacity: 0.25;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

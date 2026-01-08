@@ -1,0 +1,20 @@
+// Миксины для проекта
+
+@mixin container {
+  max-width: 1440px; // 1440px включая отступы 40px (20px с каждой стороны)
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin responsive($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+

@@ -1,0 +1,50 @@
+section.about
+  .container
+    .about__content
+      .about__left
+        h2.about__title(itemprop="name") О нас
+        p.about__text(itemprop="description")
+            | NAKORT — комьюнити людей, увлеченных большим теннисоми яркой жизнью. 
+            | Мы создали пространство,где каждый находит своё: от интенсивных тренировок под 
+            | руководством профессионалов до дружеских матчей и незабываемых моментов теплого 
+            | общенияза пределами корта.
+        include button
+        +button('Узнать больше', '/about', 'about__left-btn btn--primary')
+
+      .about__right
+        ul.about__grid.about-grid
+          li.about-grid__item
+            h3.about-grid__title(itemprop="name") 350 +
+            span.about-grid__text(itemprop="description")
+              | активных игроков
+        
+          li.about-grid__item
+            h3.about-grid__title(itemprop="name") 2000
+            span.about-grid__text(itemprop="description")
+              | участников 
+              br
+              | в чатах Telegram
+        
+          li.about-grid__item
+            h3.about-grid__title(itemprop="name") 12 +
+            span.about-grid__text(itemprop="description")
+              | локаций 
+              br
+              | для занятий 
+              br
+              | и мероприятий
+
+          li.about-grid__item
+            h3.about-grid__title(itemprop="name") 4
+            span.about-grid__text(itemprop="description")
+              | корпоративных клуба
+        
+          li.about-grid__item
+            h3.about-grid__title(itemprop="name") 8
+            span.about-grid__text(itemprop="description")
+              | тренеров в штате
+        
+          li.about-grid__item
+            h3.about-grid__title(itemprop="name") 12
+            span.about-grid__text(itemprop="description")
+              | турниров проведено

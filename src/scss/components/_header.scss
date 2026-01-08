@@ -1,0 +1,88 @@
+// Header
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  background-color: $bg-color;
+  z-index: 1000;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  &__list {
+    display: flex;
+    list-style: none;
+    gap: 28px;
+    
+    @include responsive($breakpoint-md) {
+    //   gap: 3rem;
+    }
+  }
+  
+  &__link {
+    position: relative;
+    display: inline-block;
+    padding: 5px 0;
+    color: $text-color;
+    font-family: $font-primary, sans-serif;
+    font-variation-settings: 'wght' 500;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    
+    // Иконка мяча при наведении
+    &::before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 50%;
+      transform: translateY(-50%) translateX(-10px);
+      width: 10px;
+      height: 10px;
+      background-image: url('/img/icons/ball.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    
+    &:hover {
+      color: $primary-color; // Желто-зеленый при наведении
+      font-variation-settings: 'wght' 600;
+      
+      &::before {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      }
+    }
+  }
+
+  &__logo {
+    padding-top: 25px;
+    
+    .logo-link {
+      display: inline-block;
+    }
+    
+    .logo {
+      display: block;
+      overflow: visible;
+      
+      &__balls {
+        transform: translateY(-110px) translateX(-80px);
+        opacity: 0;
+        transition: none;
+        transform-origin: 50% 50%;
+        transform-box: fill-box;
+        animation: ballDrop 2s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+      }
+    }
+  }
+}
+
+

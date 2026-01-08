@@ -1,0 +1,45 @@
+section.hero(itemscope itemtype="https://schema.org/WebPageElement")
+  .hero__carousel
+    .hero__slides
+      .hero__slide.hero__slide--active
+        .hero__slide-bg(style="background-image: url('../../img/hero/bg.png')")
+        .container
+          .hero__content
+            h1.hero__title(itemprop="headline") 
+              | Место встречи людей, увлечённых теннисом и паделом
+            .hero__actions
+              include button
+              +button('Наше приложение', 'https://apps.apple.com/ru/app/nakort-tennis-club/id6742146880', 'btn--primary')
+      
+      .hero__slide
+        .hero__slide-bg(style="background-image: url('../../img/hero/bg.png')")
+        .container
+          .hero__content
+            h1.hero__title 
+              | Профессиональные корты и тренировки
+            .hero__actions
+              include button
+              +button('Записаться на тренировку', '#', 'btn--primary', 'button')(data-modal="training")
+      
+      .hero__slide
+        .hero__slide-bg(style="background-image: url('../../img/hero/bg.png')")
+        .container
+          .hero__content
+            h1.hero__title 
+              | Турниры и соревнования
+            .hero__actions
+              include button
+              +button('Участвовать в турнире', '#tournaments', 'btn--primary')
+    
+    .hero__controls
+      button.hero__nav-btn.hero__nav-btn--prev(aria-label="Предыдущий слайд")
+        svg(width="14" height="25" viewBox="0 0 14 25" fill="none" xmlns="http://www.w3.org/2000/svg")
+          path(d="M12.5898 0.80932L1.14453 12.2546L12.5898 23.7" stroke="currentColor" stroke-width="1.61861" stroke-linecap="round")
+      .hero__dots
+        button.hero__dot.hero__dot--active(aria-label="Слайд 1" data-slide="0")
+        button.hero__dot(aria-label="Слайд 2" data-slide="1")
+        button.hero__dot(aria-label="Слайд 3" data-slide="2")
+      button.hero__nav-btn.hero__nav-btn--next(aria-label="Следующий слайд")
+        svg(width="14" height="25" viewBox="0 0 14 25" fill="none" xmlns="http://www.w3.org/2000/svg")
+          path(d="M1.41016 0.80932L12.8554 12.2546L1.41016 23.7" stroke="currentColor" stroke-width="1.61861" stroke-linecap="round")
+

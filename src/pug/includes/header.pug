@@ -1,0 +1,29 @@
+header.header(itemscope itemtype="https://schema.org/WPHeader")
+  .container
+    nav.nav(itemscope itemtype="https://schema.org/SiteNavigationElement" role="navigation" aria-label="Основная навигация")
+      .nav__logo(itemscope itemtype="https://schema.org/Organization")
+        a(href="/" itemprop="url" aria-label="Главная страница" class="logo-link")
+          include logo
+      ul.nav__list
+        li.nav__item
+          a.nav__link(href="/about" itemprop="url")
+            span(itemprop="name") О нас
+        li.nav__item
+          a.nav__link(href="/tennis" itemprop="url")
+            span(itemprop="name") Теннис
+        li.nav__item
+          a.nav__link(href="/padel" itemprop="url")
+            span(itemprop="name") Падел
+        li.nav__item
+          a.nav__link(href="/corporate" itemprop="url")
+            span(itemprop="name") Сотрудничество
+        li.nav__item
+          a.nav__link(href="/events" itemprop="url")
+            span(itemprop="name") Мероприятия
+        li.nav__item
+          a.nav__link(href="/journal" itemprop="url")
+            span(itemprop="name") Журнал
+        li.nav__item
+          a.nav__link(href="/contacts" itemprop="url")
+            span(itemprop="name") Контакты
+

@@ -1,0 +1,14 @@
+section.highlight-strip
+  img.highlight-strip__shape(src="../../img/general/shape-2.png" alt="Shape")
+  .container
+    .highlight-strip__inner
+      .highlight-strip__brand
+        include logo
+      p.highlight-strip__text Новости тенниса, лайф клуба, специальные предложения в нашем ТГ-канале
+      .highlight-strip__dots
+        span.highlight-strip__dot
+        span.highlight-strip__dot
+        span.highlight-strip__dot
+      .highlight-strip__action
+        include button
+        +button('Узнать больше', 'https://t.me/nakort_club', 'btn--primary highlight-strip__button')

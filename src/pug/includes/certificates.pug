@@ -1,0 +1,164 @@
+section.certificates#certificates
+  .certificates__container.container
+    .certificates__header
+      h2.certificates__title Сертификаты
+      .certificates__tabs
+        button.certificates__tab.certificates__tab--active(data-tab="tennis") Теннис
+        button.certificates__tab(data-tab="padel") Падел
+    
+    .certificates__content
+      .certificates__panel.certificates__panel--active(data-panel="tennis")
+        .certificates__wrapper
+          .certificates__carousel.swiper
+            .certificates__slides.swiper-wrapper
+              -
+                const tennisCertificates = [
+                  {
+                    title: 'Персональные',
+                    subtitle: '1 человек',
+                    tags: ['закрытый корт', 'весь инвентарь'],
+                    price: '7 500 ₽'
+                  },
+                  {
+                    title: 'Сплит',
+                    subtitle: '1 человек',
+                    tags: ['закрытый корт', 'весь инвентарь'],
+                    price: '8 500 ₽'
+                  },
+                  {
+                    title: 'Персональные',
+                    subtitle: '1 человек',
+                    tags: ['закрытый корт', 'весь инвентарь'],
+                    price: '9 500 ₽'
+                  },
+                  {
+                    title: 'Сплит',
+                    subtitle: '1 человек',
+                    tags: ['закрытый корт', 'весь инвентарь'],
+                    price: '10 500 ₽'
+                  }
+                ];
+              each cert in tennisCertificates
+                .certificates__slide.swiper-slide
+                  
+                  .certificates__card.certificate-card
+                    
+                    .certificate-card__back
+                      h3.certificate-card__title= cert.title
+                      span.certificate-card__subtitle= cert.subtitle
+                    .certificate-card__front
+                      .certificate-card__tags
+                        each tag in cert.tags
+                          .certificate-card__tag
+                            span= tag
+                            if tag === 'закрытый корт'
+                              include icons/icon-snowflake
+
+                      .certificate-card__bottom
+                        .certificate-card__price= cert.price
+                        include button
+                        +button('Купить', '#', 'certificate-card__button btn--primary', 'button')(data-modal="certificate")
+        .certificates__gift.certificate-gift
+          .certificate-gift__content
+            h3.certificate-gift__title Купить карту любого номинала в подарок
+            .certificate-gift__tags
+              .certificate-gift__tag
+                span закрытый корт
+                include icons/icon-snowflake
+              .certificate-gift__tag
+                span открытый корт
+                include icons/icon-sun
+              .certificate-gift__tag
+                span весь инвентарь
+            p.certificate-gift__text
+              | тут нужен небольшой текст про то,
+              br
+              | какой это классный сертификат и что можно выбрать
+            include button
+            +button('Оформить', 'https://t.me/nakort_club', 'certificate-gift__button btn--primary')
+          .certificate-gift__image(data-scroll-position="center")
+            img(src="img/cert/shape-1.png" alt="Купить карту любого номинала в подарок")
+      .certificates__nav.certificates__nav--tennis
+        button.certificates__nav-btn.certificates__nav-btn--prev(aria-label="Предыдущий сертификат")
+          svg(width="14" height="25" viewBox="0 0 14 25" fill="none" xmlns="http://www.w3.org/2000/svg")
+            path(d="M12.5898 0.80932L1.14453 12.2546L12.5898 23.7" stroke="currentColor" stroke-width="1.61861" stroke-linecap="round")
+        button.certificates__nav-btn.certificates__nav-btn--next(aria-label="Следующий сертификат")
+          svg(width="14" height="25" viewBox="0 0 14 25" fill="none" xmlns="http://www.w3.org/2000/svg")
+            path(d="M1.41016 0.80932L12.8554 12.2546L1.41016 23.7" stroke="currentColor" stroke-width="1.61861" stroke-linecap="round")
+
+      .certificates__panel(data-panel="padel")
+        .certificates__wrapper
+          .certificates__carousel.swiper
+            .certificates__slides.swiper-wrapper
+              -
+                const padelCertificates = [
+                  {
+                    title: 'Персональные',
+                    subtitle: '1 человек',
+                    tags: ['закрытый корт', 'весь инвентарь'],
+                    price: '7 500 ₽'
+                  },
+                  {
+                    title: 'Сплит',
+                    subtitle: '1 человек',
+                    tags: ['закрытый корт', 'весь инвентарь'],
+                    price: '8 500 ₽'
+                  },
+                  {
+                    title: 'Персональные',
+                    subtitle: '1 человек',
+                    tags: ['закрытый корт', 'весь инвентарь'],
+                    price: '9 500 ₽'
+                  },
+                  {
+                    title: 'Сплит',
+                    subtitle: '1 человек',
+                    tags: ['закрытый корт', 'весь инвентарь'],
+                    price: '10 500 ₽'
+                  }
+                ];
+              each cert in padelCertificates
+                .certificates__slide.swiper-slide
+                  .certificates__card.certificate-card
+                    .certificate-card__back.certificate-card__back--padel
+                      h3.certificate-card__title= cert.title
+                      span.certificate-card__subtitle= cert.subtitle
+                    .certificate-card__front
+                      .certificate-card__tags
+                        each tag in cert.tags
+                          .certificate-card__tag
+                            span= tag
+                            if tag === 'закрытый корт'
+                              include icons/icon-snowflake
+                      .certificate-card__bottom
+                        .certificate-card__price= cert.price
+                        include button
+                        +button('Купить', '#', 'certificate-card__button btn--secondary', 'button')(data-modal="certificate")
+        .certificates__gift.certificate-gift
+          .certificate-gift__content
+            h3.certificate-gift__title Купить карту любого номинала в подарок
+            .certificate-gift__tags
+              .certificate-gift__tag
+                span закрытый корт
+                include icons/icon-snowflake
+              .certificate-gift__tag
+                span открытый корт
+                include icons/icon-sun
+              .certificate-gift__tag
+                span весь инвентарь
+            p.certificate-gift__text
+              | тут нужен небольшой текст про то,
+              br
+              | какой это классный сертификат и что можно выбрать
+            include button
+            +button('Оформить', 'https://t.me/nakort_club', 'certificate-gift__button btn--secondary')
+          .certificate-gift__image(data-scroll-position="center")
+            img(src="img/cert/shape-2.png" alt="Купить карту любого номинала в подарок")
+
+      .certificates__nav.certificates__nav--padel
+        button.certificates__nav-btn.certificates__nav-btn--prev(aria-label="Предыдущий сертификат")
+          svg(width="14" height="25" viewBox="0 0 14 25" fill="none" xmlns="http://www.w3.org/2000/svg")
+            path(d="M12.5898 0.80932L1.14453 12.2546L12.5898 23.7" stroke="currentColor" stroke-width="1.61861" stroke-linecap="round")
+        button.certificates__nav-btn.certificates__nav-btn--next(aria-label="Следующий сертификат")
+          svg(width="14" height="25" viewBox="0 0 14 25" fill="none" xmlns="http://www.w3.org/2000/svg")
+            path(d="M1.41016 0.80932L12.8554 12.2546L1.41016 23.7" stroke="currentColor" stroke-width="1.61861" stroke-linecap="round")

@@ -1,0 +1,178 @@
+// Footer
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.footer {
+  padding: 3rem 0;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 84px;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  &__bottom {
+    // Стили для footer__bottom
+  }
+}
+
+.footer-top {
+  &__nav {
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      line-height: 1;
+    }
+
+    &-item {
+      line-height: 1;
+    }
+    
+    &-link {
+      position: relative;
+      display: inline-block;
+      color: $text-color;
+      font-family: $font-primary, sans-serif;
+      font-variation-settings: 'wght' 500;
+      font-weight: 500;
+      line-height: 1;
+      transition: all 0.3s ease;
+      
+      // Иконка мяча при наведении
+      &::before {
+        content: '';
+        position: absolute;
+        left: -15px;
+        top: 50%;
+        transform: translateY(-50%) translateX(-15px);
+        width: 10px;
+        height: 10px;
+        background-image: url('/img/icons/ball.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+      
+      &:hover {
+        color: $primary-color;
+        
+        &::before {
+          opacity: 1;
+          transform: translateY(-50%) translateX(0);
+        }
+      }
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &-title {
+      font-size: 20px;
+      font-variation-settings: 'wght' 700;
+      font-weight: 700;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      line-height: 1;
+    }
+
+    &-link {
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    &-social {
+      &-list {
+        display: flex;
+        align-items: center;
+        gap: 35px;
+      }
+
+      &-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      &-link {
+        display: inline-block;
+        transition: all 0.3s ease;
+        
+        svg {
+          transition: fill 0.3s ease;
+        }
+        
+        &:hover {
+          svg path{
+            fill: $primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  &__disclaimer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &-text {
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+}
+
+.footer-bottom {
+  &__list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  &__link {
+    position: relative;
+    transition: color 0.3s ease;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    &:hover {
+      color: $primary-color;
+      
+      &::before {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+    }
+  }
+}

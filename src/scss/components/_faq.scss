@@ -1,0 +1,122 @@
+// FAQ section
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.faq {
+  padding: 5rem 0;
+  // background-color: $bg-color;
+
+  &__title {
+    margin-bottom: 32px;
+  }
+
+  &__content {
+    // Контент FAQ
+  }
+}
+
+.faq-content {
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+
+  &__left {
+    flex: 0 1 40.5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+
+    &-text {
+      font-size: 36px;
+    }
+  }
+
+  &__right {
+    flex: 0 1 57.7%;
+  }
+
+  &__accordion {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__accordion-item {
+    padding: 24px 0;
+    border-bottom: 1px solid $text-color;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &[open] {
+      border-color: $primary-color;
+
+      .faq-content__accordion-question {
+        color: $primary-color;
+      }
+
+      .icon-arrow {
+        color: $primary-color;
+      }
+    }
+  }
+
+  &__accordion-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    color: $text-color;
+    cursor: pointer;
+    list-style: none;
+    transition: all 0.3s ease;
+    user-select: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::marker {
+      display: none;
+    }
+
+    &:hover {
+
+      .faq-content__accordion-question {
+        color: $primary-color;
+      }
+
+      .icon-arrow {
+        color: $primary-color;
+      }
+    }
+
+    .icon-arrow {
+      flex-shrink: 0;
+      padding: 10px;
+      width: 42px;
+      height: 42px;
+      color: $text-color;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-content__accordion-item[open] & {
+      .icon-arrow {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  &__accordion-question {
+    font-family: $font-primary, sans-serif;
+    font-variation-settings: 'wght' 600;
+    font-weight: 600;
+    color: $text-color;
+  }
+
+  &__accordion-answer {
+    margin-top: 12px;
+    font-size: 14px;
+  }
+}
+

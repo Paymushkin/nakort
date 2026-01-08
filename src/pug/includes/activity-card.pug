@@ -1,0 +1,9 @@
+mixin activity-card(title, buttonText, imagePath, href="#", buttonClass="", typeClass="", type="", modal="")
+  .activity-card(class=typeClass)
+    .activity-card__content
+      h3.activity-card__title= title
+      include button
+      +button(buttonText, href, buttonClass, type)(data-modal=modal)
+    .activity-card__image
+      img(src=imagePath alt=title loading="lazy")
+

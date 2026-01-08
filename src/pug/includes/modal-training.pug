@@ -1,0 +1,44 @@
+.modal.modal--training(data-popup="training")
+  .modal__overlay
+  .modal__content
+    button.modal__close(aria-label="Закрыть")
+      include icons/icon-close
+    h2.modal__title Стать частью клуба и записаться на тренировку
+    form.modal__form(action="#" method="POST")
+      .modal__section
+        h3.modal__section-title Формат тренировки
+        .modal__field
+          .modal__select-wrapper
+            select.modal__select#sport-training(name="sport" required)
+              option(value="" disabled selected) Выберите вид спорта
+              option(value="tennis") Теннис
+              option(value="padel") Падел
+            .modal__select-arrow
+              include icons/icon-arrow-down
+        .modal__field
+          .modal__select-wrapper
+            select.modal__select#format-training(name="format" required)
+              option(value="" disabled selected) Выберите формат
+              option(value="group") Групповые
+              option(value="personal") Персональные
+              option(value="split") Сплит
+            .modal__select-arrow
+              include icons/icon-arrow-down
+        .modal__field
+          input.modal__input#name-training(type="text" name="name" placeholder="Введите ваше имя" required)
+        .modal__field
+          input.modal__input#phone-training(type="tel" name="phone" placeholder="+7 (___) ___-__-__" required)
+      .modal__section
+        .modal__checkbox
+          input.modal__checkbox-input#agreement1-training(type="checkbox" name="agreement1" required)
+          label.modal__checkbox-label(for="agreement1-training")
+            | * Я согласен с 
+            a.modal__link(href="#" target="_blank") Договором на оказание физкультурно-оздоровительных услуг (публичной офертой)
+        .modal__checkbox
+          input.modal__checkbox-input#agreement2-training(type="checkbox" name="agreement2" required)
+          label.modal__checkbox-label(for="agreement2-training")
+            | * Я согласен с 
+            a.modal__link(href="#" target="_blank") Политикой в отношении обработки персональных данных
+      button.modal__submit.btn.btn--primary(type="submit")
+        span.btn__text Записаться
+

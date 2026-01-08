@@ -1,0 +1,392 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.certificates {
+  margin-bottom: 200px;
+  overflow: visible;
+
+  &__container {
+    position: relative;
+    overflow: visible;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  &__title {
+    margin: 0;
+  }
+
+  &__tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 46px;
+  }
+
+  &__tab {
+    padding: 10px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    background: transparent;
+    color: $text-color;
+    font-family: $font-primary, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &--active {
+      border-color: $primary-color;
+      background-color: $bg-secondary;
+
+      &[data-tab="padel"] {
+        border-color: $secondary-color;
+        background-color: $bg-secondary;
+      }
+    }
+
+    &:hover {
+      border-color: $primary-color;
+      color: $primary-color;
+
+      &[data-tab="padel"] {
+        border-color: $secondary-color;
+        color: $secondary-color;
+      }
+    }
+  }
+
+  &__content {
+    overflow: visible;
+  }
+
+  &__panel {
+    display: none;
+    overflow: visible;
+
+    &--active {
+      display: block;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    overflow: visible;
+    margin-right: -40px; // Компенсируем padding контейнера
+    padding-right: 40px; // Возвращаем padding для внутреннего контента
+  }
+
+  &__carousel {
+    position: relative;
+    overflow: visible;
+
+    // Переопределяем overflow для Swiper
+    &.swiper {
+      overflow: visible;
+    }
+  }
+
+  &__slides {
+    padding-bottom: 150px;
+    // Swiper стили применяются автоматически
+    
+    &.swiper-wrapper {
+      overflow: visible;
+    }
+  }
+
+  &__slide {
+    height: auto;
+  }
+
+  &__nav {
+    position: absolute;
+    top: 5px;
+    right: 25px;
+    display: none;
+    justify-content: center;
+    gap: 16px;
+
+    &--active {
+      display: flex;
+    }
+
+    &--padel {
+      .certificates__nav-btn {
+        color: $secondary-color;
+
+        &:hover {
+          color: $secondary-color;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  &__nav-btn {
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: $text-color;
+    transition: all 0.3s ease;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+
+    svg {
+      width: 14px;
+      height: 25px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    // Скрываем стандартные стили Swiper
+    &.swiper-button-disabled {
+      opacity: 0.35;
+      cursor: auto;
+      pointer-events: none;
+    }
+
+    // Скрываем стандартные иконки Swiper
+    &::after,
+    &::before {
+      display: none !important;
+      content: none !important;
+    }
+  }
+}
+
+.certificate-card {
+  position: relative;
+  display: grid;
+  overflow: visible;
+
+  &:hover {
+    .certificate-card__front {
+      transform: translateY(150px);
+    }
+
+    .certificate-card__back {
+      color: #000;
+      background-color: $primary-color;
+
+      &--padel {
+        color: $text-color;
+        background-color: $secondary-color;
+      }
+    }
+  }
+
+  &__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 36px 60px;
+    border-radius: 30px 30px 0 0;
+    color: $text-color;
+    background-color: rgba(204, 204, 204, 0.25);
+    transition: background-color 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  }
+
+  &__title {
+    font-variation-settings: 'wght' 600;
+    font-weight: 600;
+    font-size: 45px;
+    transition: color 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  }
+
+  &__subtitle {
+    padding: 10px 20px;
+    font-variation-settings: 'wght' 500;
+    font-weight: 500;
+    font-size: 16px;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+    transition: border-color, color 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  }
+
+  &__front {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 36px;
+    background-color: #1f1f1f;
+    border-radius: 30px;
+    overflow: hidden;
+    z-index: 1;
+    transform: translateY(89px);
+    transition: transform 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+    cursor: pointer;
+  }
+
+  &__card-title {
+    font-family: $font-primary, sans-serif;
+    font-variation-settings: 'wght' 700;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.2;
+    color: $text-color;
+    margin: 0;
+  }
+
+  &__tags {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-family: $font-primary, sans-serif;
+    font-size: 16px;
+    color: $text-color;
+    width: fit-content;
+
+    .icon-snowflake {
+      width: 23px;
+      height: 23px;
+      color: $text-color;
+      flex-shrink: 0;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
+
+  &__button {
+   flex: 1 1 auto;
+  }
+
+  &__price {
+    font-family: $font-primary, sans-serif;
+    font-variation-settings: 'wght' 600;
+    font-weight: 600;
+    font-size: 45px;
+    line-height: 1.2;
+    color: $text-color;
+    margin-top: auto;
+  }
+}
+
+.certificate-gift {
+  display: flex;
+  margin-top: 48px;
+  min-height: 377px;
+  border-radius: 30px;
+  overflow: hidden;
+
+  &__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 34px;
+    background-color: $white;
+  }
+
+  &__title {
+    font-variation-settings: 'wght' 800;
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 1;
+    color: #000;
+    margin: 0 0 16px;
+  }
+
+  &__text {
+    color: #000;
+    margin: 0 0 24px;
+  }
+
+  &__button {
+    &:hover {
+      background-color: #000;
+      border-color: $secondary-color;
+    }
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    width: fit-content;
+  
+    .icon-snowflake,
+    .icon-sun {
+      width: 16px;
+      height: 16px;
+      color: #000;
+      flex-shrink: 0;
+    }
+  }
+  &__image {
+    flex: 0 0 377px;
+    position: relative;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 30px 30px 0;
+    background-color: $bg-secondary;
+    background-color: #202020;
+    height: 377px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+  
+    img {
+      position: absolute;
+      top: -30%;
+      left: -1%;
+      width: 100%;
+      transform-origin: center center;
+      rotate: 90deg;
+      scale: 1.65;
+      transition: rotate 1s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+    }
+  
+    // Анимация при скролле
+    &.certificate-gift__image--active {
+      img {
+          top: -28%;
+          left: 0;
+        rotate: 0deg;
+      }
+    }
+  }
+}

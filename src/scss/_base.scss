@@ -1,0 +1,100 @@
+// Базовые стили
+@use 'variables' as *;
+
+// Сброс стилей
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: $base-font-size;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 1920px;
+  color: $text-color;
+  line-height: 1.2;
+  background-color: $bg-color;
+  color: $text-color;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s ease;
+  
+  &:hover {
+    // opacity: 0.8;
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-transform: none;
+  text-shadow: none;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-indent: 0;
+  text-rendering: auto;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+// Оптимизация для производительности
+picture {
+  display: block;
+  
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+// Lazy loading
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+  
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  > main {
+    flex: 1;
+  }
+}
+
+.section-title {
+  color: $text-color;
+  font-size: 3rem;
+  font-variation-settings: 'wght' 800;
+}

@@ -1,0 +1,70 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.highlight-strip {
+  position: relative;
+  margin: 78px 0;
+
+  &__shape {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: scale(.25) translateY(0px) translateX(600px);
+    transform-origin: right top;
+    z-index: -1;
+    transition: transform 0.8s cubic-bezier(0.165, 0.840, 0.440, 1.000);
+  }
+
+  &--visible &__shape {
+    transform: scale(0.5) translateY(0px) translateX(0px);
+  }
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 34px 36px;
+    border-radius: 30px;
+    background: $bg-secondary;
+  }
+
+  &__brand {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__text {
+    max-width: 315px;
+  }
+
+  &__dots {
+    display: flex;
+  }
+
+  &__dot {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    border: 2px solid $primary-color;
+    background-color: $bg-color;
+
+    &:nth-child(2) {
+      transform: translateX(-12px);
+    }
+
+    &:nth-child(3) {
+      transform: translateX(-24px);
+    }
+  }
+
+  &__action {
+    flex-shrink: 0;
+  }
+
+  &__button {
+    white-space: nowrap;
+  }
+}

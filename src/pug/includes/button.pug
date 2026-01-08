@@ -1,0 +1,9 @@
+mixin button(text, href="#", className="", type="link")
+  if type === "button"
+    button.btn(type="button" class=className)&attributes(attributes)
+      span.btn__text= text
+  else
+    a.btn(href=href target="_blank" class=className)&attributes(attributes)
+      span.btn__text= text
+
+

@@ -1,0 +1,93 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.about {
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+
+  &__left {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 48px;
+    max-width: 550px;
+
+    &-btn {
+      margin-top: auto;
+    }
+  }
+
+  &__right {
+    flex: 0 1 50%;
+  }
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 210px);
+  gap: 20px 42px;
+
+  &__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 15px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      transition: opacity 0.3s ease;
+      animation: about-grid-item-shadow 3s linear infinite;
+    }
+
+    &:nth-child(1)::before {
+      box-shadow: 0 -8px 21.48px rgba(235, 255, 0, 0.70);
+    }
+
+    &:nth-child(2)::before {
+      box-shadow: 6px -8px 21.48px rgba(235, 255, 0, 0.70);
+    }
+
+    &:nth-child(3)::before {
+      box-shadow: 6px -8px 21.48px rgba(235, 255, 0, 0.70);
+    }
+
+    &:nth-child(4)::before {
+      box-shadow: -10px 2px 21.48px rgba(235, 255, 0, 0.70);
+    }
+
+    &:nth-child(5)::before {
+      box-shadow: 7px 10px 21.48px rgba(235, 255, 0, 0.70);
+    }
+
+    &:nth-child(6)::before {
+      box-shadow: 0 8px 21.48px rgba(235, 255, 0, 0.70);
+    }
+  }
+
+  &__title {
+    color: $primary-color;
+    font-size: 46px;
+    line-height: 1.1;
+  }
+
+  &__text {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.1;
+  }
+}

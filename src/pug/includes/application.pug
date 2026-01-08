@@ -1,0 +1,29 @@
+section.application
+  .container
+    .application__content
+      h2.application__title Наше приложение
+      .application__img
+        .application__img-loader
+          include icons/icon-logo-mini
+        img(src="../../img/app/phone.png" alt="Application")
+      include button
+      +button('Скачать', 'https://apps.apple.com/ru/app/nakort-tennis-club/id6742146880', 'application__button btn--primary')
+    .application__marquee
+      .application__marquee-track
+        -
+          const marqueeItems = [
+            'Легкая онлайн-запись',
+            'Выбор наставника и знакомство с его опытом',
+            'Личный кабинет',
+            'Мотивационная программа',
+            'Новостная лента'
+          ];
+        each item in marqueeItems
+          .application__marquee-item
+            span= item
+            include icons/icon-flash
+        // Дублируем для бесшовности
+        each item in marqueeItems
+          .application__marquee-item
+            span= item
+            include icons/icon-flash 
