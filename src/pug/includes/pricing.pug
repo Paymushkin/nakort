@@ -59,9 +59,9 @@ section.pricing#pricing
                     span.card-pricing__promo-value= priceCard.promo
                     span.card-pricing__promo-label Пробное занятие
                 .card-pricing__shape-container
-                  img.card-pricing__shape(class=`card-pricing__shape--${priceCard.shape}`, src=`../img/plan/ellipse-${priceCard.shape}.svg`, alt='')
+                  img.card-pricing__shape(class=`card-pricing__shape--${priceCard.shape}`, src=`img/plan/ellipse-${priceCard.shape}.svg`, alt='')
                   if priceCard.addShape
-                    img.card-pricing__shape(class=`card-pricing__shape--${priceCard.addShape}`, src=`../img/plan/ellipse-${priceCard.addShape}.svg`, alt='')
+                    img.card-pricing__shape(class=`card-pricing__shape--${priceCard.addShape}`, src=`img/plan/ellipse-${priceCard.addShape}.svg`, alt='')
                 .card-pricing__content
                   .card-pricing__single.single-price
                     .single-price__value= priceCard.items[0].price
@@ -130,8 +130,8 @@ section.pricing#pricing
                     span.card-pricing__promo-label Пробное занятие
                 .card-pricing__shape-container
                   if priceCard.addShape
-                    img.card-pricing__shape(class=`card-pricing__shape--${priceCard.addShape}`, src=`../img/plan/ellipse-${priceCard.addShape}.svg`, alt='')
-                  img.card-pricing__shape(class=`card-pricing__shape--${priceCard.shape}`, src=`../img/plan/ellipse-${priceCard.shape}.svg`, alt='')
+                    img.card-pricing__shape(class=`card-pricing__shape--${priceCard.addShape}`, src=`img/plan/ellipse-${priceCard.addShape}.svg`, alt='')
+                  img.card-pricing__shape(class=`card-pricing__shape--${priceCard.shape}`, src=`img/plan/ellipse-${priceCard.shape}.svg`, alt='')
                 .card-pricing__content
                   .card-pricing__single.single-price
                     .single-price__value= priceCard.items[0].price
