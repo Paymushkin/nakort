@@ -5,6 +5,10 @@
   position: relative;
   margin: 78px 0;
 
+  &__container {
+    position: relative;
+  }
+
   &__shape {
     position: absolute;
     top: 0;

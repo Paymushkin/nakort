@@ -8,7 +8,8 @@
     "build": "gulp build",
     "build:convert": "gulp buildWithConvert",
     "convert": "gulp convert",
-    "clean": "gulp clean"
+    "clean": "gulp clean",
+    "favicon": "bash scripts/generate-favicons.sh"
   },
   "keywords": [
     "tennis",

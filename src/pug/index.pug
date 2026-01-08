@@ -3,15 +3,54 @@ html(lang="ru")
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    meta(name="description" content="Теннисный клуб - профессиональные корты, тренировки и турниры")
-    meta(name="keywords" content="теннис, корты, тренировки, турниры, спорт")
-    meta(name="author" content="Теннисный клуб")
-    meta(property="og:title" content="Теннисный клуб")
-    meta(property="og:description" content="Профессиональные корты, тренировки и турниры")
+    
+    // SEO Meta Tags
+    title NAKORT - Теннисный клуб | Профессиональные корты, тренировки и турниры
+    meta(name="description" content="NAKORT — теннисный клуб с профессиональными кортами, тренировками и турнирами. Запишитесь на тренировку по теннису или паделу.")
+    meta(name="keywords" content="теннис, падел, корты, тренировки, турниры, спорт, теннисный клуб, NAKORT")
+    meta(name="author" content="NAKORT")
+    meta(name="robots" content="index, follow")
+    link(rel="canonical" href="https://nakort.ru/")
+    
+    // Open Graph / Facebook
     meta(property="og:type" content="website")
-    title Теннисный клуб - Главная
+    meta(property="og:url" content="https://nakort.ru/")
+    meta(property="og:title" content="NAKORT - Теннисный клуб | Профессиональные корты")
+    meta(property="og:description" content="NAKORT — комьюнити людей, увлеченных большим теннисом и яркой жизнью. Профессиональные корты, тренировки и турниры.")
+    meta(property="og:image" content="https://nakort.ru/img/og-image.webp")
+    meta(property="og:image:width" content="1200")
+    meta(property="og:image:height" content="630")
+    meta(property="og:locale" content="ru_RU")
+    meta(property="og:site_name" content="NAKORT")
+    
+    // Twitter Card
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:title" content="NAKORT - Теннисный клуб")
+    meta(name="twitter:description" content="NAKORT — комьюнити людей, увлеченных большим теннисом и яркой жизнью.")
+    meta(name="twitter:image" content="https://nakort.ru/img/og-image.webp")
+    
+    // Favicon
+    link(rel="icon" type="image/svg+xml" href="favicon.svg")
+    link(rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png")
+    link(rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png")
+    link(rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png")
+    link(rel="manifest" href="site.webmanifest")
+    
+    // Performance Optimizations - Resource Hints
+    link(rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin)
+    link(rel="dns-prefetch" href="https://cdn.jsdelivr.net")
+    
+    // Preload критичных ресурсов
+    link(rel="preload" href="css/main.css" as="style")
+    // Шрифты загружаются через CSS @font-face, preload не нужен
+    
+    // Critical CSS (inline или preload)
     link(rel="stylesheet" href="css/main.css")
-    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
+    
+    // Non-critical CSS (загружаем асинхронно)
+    link(rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'")
+    noscript
+      link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css")
   body
     .wrapper
         include includes/header
@@ -33,6 +72,33 @@ html(lang="ru")
 
     include includes/modal-training
     include includes/modal-certificate
+    include includes/desktop-only
 
-    script(src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer)
+    // Structured Data (JSON-LD) для SEO
+    script(type="application/ld+json").
+      {
+        "@context": "https://schema.org",
+        "@type": "SportsActivityLocation",
+        "name": "NAKORT",
+        "description": "Теннисный клуб с профессиональными кортами, тренировками и турнирами",
+        "url": "https://nakort.ru",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "RU"
+        },
+        "sport": ["Tennis", "Padel"],
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "RUB"
+        }
+      }
+    
+    // Загрузка Swiper асинхронно (не блокирует рендеринг)
+    script.
+      (function() {
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js';
+        script.defer = true;
+        document.head.appendChild(script);
+      })();
     script(src="js/main.js" defer)

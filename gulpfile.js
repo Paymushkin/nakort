@@ -23,7 +23,7 @@ const paths = {
     pug: 'src/pug/**/*.pug',
     scss: 'src/scss/**/*.scss',
     js: 'src/js/**/*.js',
-    img: 'src/img/**/*.{jpg,jpeg,png,gif,svg}',
+    img: 'src/img/**/*.{jpg,jpeg,png,gif,svg,webp}',
     fonts: 'src/fonts/**/*.{ttf,otf,woff,woff2}',
     static: 'src/static/**/*'
   },
@@ -60,7 +60,7 @@ function compilePug() {
 
 // Компиляция SCSS
 function compileSass() {
-  return gulp.src(paths.src.scss)
+  return gulp.src('src/scss/main.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
@@ -74,7 +74,7 @@ function compileSass() {
 
 // Минификация CSS для production
 function minifyCSS() {
-  return gulp.src(paths.src.scss)
+  return gulp.src('src/scss/main.scss')
     .pipe(plumber())
     .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
     .pipe(autoprefixer({
@@ -238,10 +238,10 @@ function replaceFontsInCSS() {
     .pipe(gulp.dest(paths.dist.css));
 }
 
-// Копирование статических файлов
+// Копирование статических файлов (favicon, manifest и т.д.)
 function copyStatic() {
   return gulp.src(paths.src.static)
-    .pipe(gulp.dest(paths.dist.static))
+    .pipe(gulp.dest(paths.dist.base)) // Копируем в корень dist для favicon
     .pipe(browserSync.stream());
 }
 

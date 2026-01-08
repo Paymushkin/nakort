@@ -1,0 +1,61 @@
+@use '../variables' as *;
+
+.desktop-only-overlay {
+  display: none; // По умолчанию скрыт
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  // Показываем только на экранах менее 1280px
+  @media (max-width: 1279px) {
+    display: flex;
+  }
+
+  &__content {
+    text-align: center;
+    max-width: 500px;
+    padding: 40px;
+    background-color: $bg-secondary;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    color: $primary-color;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__title {
+    font-family: $font-primary, sans-serif;
+    font-variation-settings: 'wght' 700;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
+    color: $primary-color;
+    margin: 0 0 16px;
+  }
+
+  &__text {
+    font-family: $font-primary, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: $text-color;
+    margin: 0;
+  }
+}
+

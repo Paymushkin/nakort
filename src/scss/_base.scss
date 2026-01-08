@@ -11,6 +11,10 @@
 html {
   font-size: $base-font-size;
   scroll-behavior: smooth;
+  // Оптимизация рендеринга
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -19,13 +23,19 @@ body {
   color: $text-color;
   line-height: 1.2;
   background-color: $bg-color;
-  color: $text-color;
+  // Оптимизация рендеринга
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
   max-width: 100%;
   height: auto;
   display: block;
+  // Оптимизация производительности
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 a {

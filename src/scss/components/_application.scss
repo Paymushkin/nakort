@@ -10,8 +10,6 @@
     gap: 20px;
   }
 
-  &__title {
-  }
 
   &__img {
     position: relative;
@@ -72,6 +70,9 @@
     gap: 24px;
     animation: marquee 30s linear infinite;
     will-change: transform;
+    // Оптимизация производительности
+    backface-visibility: hidden;
+    perspective: 1000px;
   }
 
   &__marquee-item {

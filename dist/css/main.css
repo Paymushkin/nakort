@@ -213,6 +213,9 @@ strong, b {
 html {
   font-size: 20px;
   scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -221,13 +224,17 @@ body {
   color: #fff;
   line-height: 1.2;
   background-color: #000;
-  color: #fff;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img {
   max-width: 100%;
   height: auto;
   display: block;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 a {
@@ -725,6 +732,9 @@ img[loading=lazy].loaded {
   position: relative;
   margin: 78px 0;
 }
+.highlight-strip__container {
+  position: relative;
+}
 .highlight-strip__shape {
   position: absolute;
   top: 0;
@@ -836,6 +846,8 @@ img[loading=lazy].loaded {
   gap: 24px;
   animation: marquee 30s linear infinite;
   will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 .application__marquee-item {
   display: flex;
@@ -1806,7 +1818,6 @@ img[loading=lazy].loaded {
   height: 46px;
 }
 .modal__title {
-  font-family: "Mulish", "PT Sans", sans-serif, sans-serif;
   font-variation-settings: "wght" 700;
   font-weight: 700;
   font-size: 24px;
@@ -1953,6 +1964,60 @@ img[loading=lazy].loaded {
 .modal__submit {
   width: 100%;
   margin-top: 8px;
+}
+
+.desktop-only-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+@media (max-width: 1279px) {
+  .desktop-only-overlay {
+    display: flex;
+  }
+}
+.desktop-only-overlay__content {
+  text-align: center;
+  max-width: 500px;
+  padding: 40px;
+  background-color: rgba(204, 204, 204, 0.15);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.desktop-only-overlay__icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  color: #EBFF00;
+}
+.desktop-only-overlay__icon svg {
+  width: 100%;
+  height: 100%;
+}
+.desktop-only-overlay__title {
+  font-family: "Mulish", "PT Sans", sans-serif, sans-serif;
+  font-variation-settings: "wght" 700;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+  color: #EBFF00;
+  margin: 0 0 16px;
+}
+.desktop-only-overlay__text {
+  font-family: "Mulish", "PT Sans", sans-serif, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #fff;
+  margin: 0;
 }
 
 .footer {
