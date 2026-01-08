@@ -414,7 +414,7 @@ img[loading=lazy].loaded {
   transform: translateY(-50%) translateX(-10px);
   width: 10px;
   height: 10px;
-  background-image: url("/img/icons/ball.svg");
+  background-image: url("../img/icons/ball.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -2061,7 +2061,7 @@ img[loading=lazy].loaded {
   transform: translateY(-50%) translateX(-15px);
   width: 10px;
   height: 10px;
-  background-image: url("/img/icons/ball.svg");
+  background-image: url("../img/icons/ball.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
