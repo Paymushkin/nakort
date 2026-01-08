@@ -1,0 +1,23 @@
+# Cache headers for Netlify (GitHub Pages не поддерживает, но оставлено для совместимости)
+# Для GitHub Pages используйте meta теги или service worker
+
+# Images - cache for 1 year
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts - cache for 1 year
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSS - cache for 1 month
+/css/*
+  Cache-Control: public, max-age=2592000
+
+# JS - cache for 1 month
+/js/*
+  Cache-Control: public, max-age=2592000
+
+# HTML - no cache
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+
