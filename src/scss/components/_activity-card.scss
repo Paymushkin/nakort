@@ -45,11 +45,11 @@
     color: $primary-color;
     margin: 0;
 
-    &.color-primary {
+    .activity-card--primary & {
       color: $primary-color;
     }
 
-    &.color-secondary {
+    .activity-card--secondary & {
       color: $secondary-color;
     }
   }

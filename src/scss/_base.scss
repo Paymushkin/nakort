@@ -19,10 +19,12 @@ html {
 
 body {
   margin: 0 auto;
-  max-width: 1920px;
+  width: 1920px;
+  max-width: 100vw;
   color: $text-color;
   line-height: 1.2;
   background-color: $bg-color;
+  overflow-x: hidden;
   // Оптимизация рендеринга
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -86,7 +88,6 @@ picture {
 // Lazy loading
 img[loading="lazy"] {
   opacity: 0;
-  transition: opacity 0.3s;
   
   &.loaded {
     opacity: 1;

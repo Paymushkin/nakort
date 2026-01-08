@@ -83,14 +83,22 @@ function initScrollToCenterAnimation(element, visibleClass, options = {}) {
   function checkPosition() {
     const rect = element.getBoundingClientRect();
     const elementCenter = rect.top + rect.height / 2;
+    const elementBottom = rect.bottom;
     const viewportHeight = window.innerHeight;
     
     let shouldBeVisible = false;
     
     if (scrollPosition === 'bottom') {
-      // Нижняя треть экрана (элемент должен быть в нижних 33% viewport)
-      const bottomThreshold = viewportHeight * (2 / 3); // 66.67% от верха = нижняя треть
-      shouldBeVisible = elementCenter <= bottomThreshold;
+      // Нижняя треть экрана - анимация начинается когда элемент достигает нижней трети
+      // и остается активной пока элемент виден, отключается когда уходит за нижнюю границу
+      const bottomThirdThreshold = viewportHeight * (2 / 3); // 66.67% от верха = нижняя треть
+      const elementTop = rect.top;
+      const elementBottom = rect.bottom;
+      
+      // Анимация запускается когда верх элемента достиг нижней трети экрана
+      // и остается активной пока элемент виден (нижняя граница выше низа экрана)
+      // Отключается когда элемент полностью уходит за нижнюю границу экрана
+      shouldBeVisible = elementTop <= bottomThirdThreshold && elementBottom > 0;
     } else {
       // По умолчанию - центр экрана
       const viewportCenter = viewportHeight / 2;
