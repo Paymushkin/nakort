@@ -48,9 +48,9 @@ function clean() {
   return del(['dist', 'temp']);
 }
 
-// Компиляция Pug
+// Компиляция Pug (исключаем includes и layout)
 function compilePug() {
-  return gulp.src(paths.src.pug)
+  return gulp.src(['src/pug/**/*.pug', '!src/pug/includes/**/*.pug', '!src/pug/layout.pug'])
     .pipe(plumber())
     .pipe(pug({
       pretty: true
@@ -102,6 +102,16 @@ function processJS() {
     .pipe(browserSync.stream());
 }
 
+// Копирование about-scroll.js (отдельный файл для страницы about)
+function copyAboutScrollJS() {
+  return gulp.src('src/js/about-scroll.js')
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(paths.dist.js))
+    .pipe(browserSync.stream());
+}
+
 // Копирование Swiper JS (отдельно, не объединяем с main.js)
 function copySwiperJS() {
   return gulp.src('src/js/swiper.min.js')
@@ -121,6 +131,18 @@ function processJSProd() {
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(concat('main.js'))
+    .pipe(gulp.dest(paths.dist.js))
+    .pipe(uglify())
+    .pipe(rename({ suffix: '.min' }))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(paths.dist.js));
+}
+
+// Копирование about-scroll.js для production
+function copyAboutScrollJSProd() {
+  return gulp.src('src/js/about-scroll.js')
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
     .pipe(gulp.dest(paths.dist.js))
     .pipe(uglify())
     .pipe(rename({ suffix: '.min' }))
@@ -298,16 +320,19 @@ function serve() {
 
 // Наблюдение за изменениями
 function watch() {
-  // Отслеживание всех Pug файлов (включая includes) - компиляция и перезагрузка
-  // При изменении includes перекомпилируются все pug файлы
+  // Отслеживание всех Pug файлов - при изменении includes перекомпилируются все страницы
+  // При изменении includes перекомпилируются все pug файлы (но includes не компилируются отдельно)
   gulp.watch('src/pug/**/*.pug', compilePug);
   
   // Отслеживание SCSS файлов - компиляция и перезагрузка (через stream)
   gulp.watch(paths.src.scss, compileSass);
   
   // Отслеживание JS файлов - обработка и перезагрузка (через stream, без минификации)
-  // Исключаем swiper.min.js, он копируется отдельно
-  gulp.watch(['src/js/**/*.js', '!src/js/swiper.min.js'], processJS);
+  // Исключаем swiper.min.js и about-scroll.js (они обрабатываются отдельно)
+  gulp.watch(['src/js/**/*.js', '!src/js/swiper.min.js', '!src/js/about-scroll.js'], processJS);
+  
+  // Отслеживание about-scroll.js отдельно
+  gulp.watch('src/js/about-scroll.js', copyAboutScrollJS);
   
   // Отслеживание изображений - быстрое копирование без оптимизации (через stream)
   gulp.watch(paths.src.img, copyImages);
@@ -334,7 +359,7 @@ const convert = gulp.series(
 // Задача сборки с конвертацией
 const buildWithConvert = gulp.series(
   clean,
-  gulp.parallel(compilePug, compileSass, processJSProd, copySwiperJSProd, copyCSS, optimizeImages, copyFonts, copyStatic),
+  gulp.parallel(compilePug, compileSass, processJSProd, copySwiperJSProd, copyAboutScrollJSProd, copyCSS, optimizeImages, copyFonts, copyStatic),
   convert,
   copyWebpImages,
   copyConvertedFonts,
@@ -349,7 +374,7 @@ const buildWithConvert = gulp.series(
 // Задача сборки без конвертации
 const build = gulp.series(
   clean,
-  gulp.parallel(compilePug, compileSass, processJSProd, copySwiperJSProd, copyCSS, optimizeImages, copyFonts, copyStatic),
+  gulp.parallel(compilePug, compileSass, processJSProd, copySwiperJSProd, copyAboutScrollJSProd, copyCSS, optimizeImages, copyFonts, copyStatic),
   minifyCSS,
   minifyHTML
 );
@@ -357,7 +382,7 @@ const build = gulp.series(
 // Задача разработки
 const dev = gulp.series(
   clean,
-  gulp.parallel(compilePug, compileSass, processJS, copySwiperJS, copyCSS, copyImages, copyFonts, copyStatic),
+  gulp.parallel(compilePug, compileSass, processJS, copySwiperJS, copyAboutScrollJS, copyCSS, copyImages, copyFonts, copyStatic),
   gulp.parallel(serve, watch)
 );
 

@@ -1,0 +1,69 @@
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    
+    // SEO Meta Tags
+    title О нас - NAKORT | Теннисный клуб
+    meta(name="description" content="О нас - NAKORT. Комьюнити людей, увлеченных большим теннисом и яркой жизнью.")
+    meta(name="keywords" content="о нас, NAKORT, теннисный клуб, комьюнити, теннис, падел")
+    meta(name="author" content="NAKORT")
+    meta(name="robots" content="index, follow")
+    link(rel="canonical" href="https://nakort.ru/about")
+    
+    // Open Graph / Facebook
+    meta(property="og:type" content="website")
+    meta(property="og:url" content="https://nakort.ru/about")
+    meta(property="og:title" content="О нас - NAKORT | Теннисный клуб")
+    meta(property="og:description" content="NAKORT — комьюнити людей, увлеченных большим теннисом и яркой жизнью.")
+    meta(property="og:image" content="https://nakort.ru/img/og-image.webp")
+    meta(property="og:locale" content="ru_RU")
+    
+    // Twitter Card
+    meta(name="twitter:card" content="summary_large_image")
+    meta(name="twitter:title" content="О нас - NAKORT")
+    meta(name="twitter:description" content="NAKORT — комьюнити людей, увлеченных большим теннисом и яркой жизнью.")
+    
+    // Favicon
+    link(rel="icon" type="image/svg+xml" href="favicon.svg")
+    link(rel="manifest" href="site.webmanifest")
+    
+    // Performance Optimizations
+    link(rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin)
+    link(rel="dns-prefetch" href="https://cdn.jsdelivr.net")
+    
+    // CSS
+    link(rel="stylesheet" href="css/main.css")
+    link(rel="stylesheet" href="css/swiper.min.css")
+  body
+    .wrapper
+        include includes/header
+
+        main.main
+          // Scroll-linked Animation Section
+          section.about-scroll
+            // Loading State
+            .about-scroll__loader
+              .about-scroll__loader-spinner
+                span.about-scroll__loader-text Загрузка...
+            
+            // Sticky Canvas Container
+            .about-scroll__container
+              canvas.about-scroll__canvas#scrollCanvas(aria-label="Scroll animation canvas")
+
+    include includes/footer
+
+    // Structured Data (JSON-LD)
+    script(type="application/ld+json").
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "О нас - NAKORT",
+        "description": "NAKORT — комьюнити людей, увлеченных большим теннисом и яркой жизнью",
+        "url": "https://nakort.ru/about"
+      }
+
+    script(src="js/swiper.min.js" defer)
+    script(src="js/main.js" defer)
+    script(src="js/about-scroll.js" defer)

@@ -142,7 +142,7 @@ class Carousel {
       : container;
     
     if (!this.container) {
-      console.warn('Carousel: контейнер не найден');
+      // Тихая проверка - не выводим предупреждение, если элемент не найден
       return;
     }
 
@@ -333,7 +333,7 @@ function initReviewsCarousel() {
   
   const reviewsCarousel = document.querySelector('.reviews__carousel');
   if (!reviewsCarousel) {
-    console.warn('Элемент .reviews__carousel не найден');
+    // Тихая проверка - элемент не найден, возможно это не страница с reviews
     return;
   }
   
@@ -369,7 +369,7 @@ function initCertificatesCarousel() {
   // Инициализация для каждой панели (tennis и padel)
   const certificatesPanels = document.querySelectorAll('.certificates__panel');
   if (certificatesPanels.length === 0) {
-    console.warn('Элементы .certificates__panel не найдены');
+    // Тихая проверка - элементы не найдены, возможно это не страница с certificates
     return;
   }
   
